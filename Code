@@ -43,3 +43,21 @@ file_path = 'wordcount.txt'
 word_frequency = count_word_frequency(file_path)
 for word, frequency in word_frequency.items():
     print(f"Từ '{word}' xuất hiện {frequency} lần")
+
+
+###Bloom filter
+from pybloom_live import BloomFilter
+
+bloom_filter = BloomFilter(capacity=1000, error_rate=0.1)
+
+words = "decision trees are a very effective method of supervised learning.it aims is the partition of a dataset into groups as homogeneous as possible in terms of the variable to be predicted it takes as input a set of classified data, and outputs a tree that resembles to an orientation diagram where each end node leaf is a decision a class and each non final node internal represents a test. each leaf represents the decision of belonging to a class of data verifying all tests path from the root to the leaf.".split()
+
+for word in words:
+    bloom_filter.add(word)
+
+word_to_check = "decision,44,kkk"
+if word_to_check in bloom_filter:
+    print(f"The word '{word_to_check}' co  ton tai.")
+else:
+    print(f"The word '{word_to_check}' co the khong ton tai.")
+
